@@ -6,6 +6,7 @@ from urllib2 import build_opener
 
 class MoneroTicker(rumps.App):
     # TODO: Make the icon fit more nicely on the status bar.
+    #       Also, make it look nice on dark status bars.
     ICON = "monero.ico"
     UPDATE_FREQUENCY = 60
     MONERO_URL = "http://moneropric.es/fiat.json"
@@ -51,8 +52,8 @@ class MoneroTicker(rumps.App):
         window.add_buttons(MoneroTicker.SYMBOLS.keys())
         response = window.run().clicked
 
-        # The response will be zero if the user pressed cancel, else will be 2, 3, ...
-        if response:
+        # The response will be one if the user pressed cancel, else will be 2, 3, ...
+        if response > 1:
             self.currency = MoneroTicker.SYMBOLS.keys()[response - 2]
             self.update_price('_')
 
