@@ -5,13 +5,10 @@ from json import loads
 from urllib2 import build_opener
 
 class MoneroTicker(rumps.App):
-    # TODO: Make the icon fit more nicely on the status bar.
-    #       Also, make it look nice on dark status bars.
     ICON = "monero.ico"
     UPDATE_FREQUENCY = 60
     MONERO_URL = "http://moneropric.es/fiat.json"
     DEFAULT_CURRENCY = "USD"
-    # TODO: Are these the currencies we want to have? Or are there more?
     SYMBOLS = OrderedDict([
         ("USD" , "$"),
         ("CAD", "$"),
@@ -28,8 +25,6 @@ class MoneroTicker(rumps.App):
 
     @rumps.clicked("About")
     def about(self, _):
-        # TODO: This could be formatted a lot better. Unfortunately I don't think it's possible
-        #       with rumps.
         text = \
         """
         Feel free to donate to MoneroTicker!
@@ -47,8 +42,6 @@ class MoneroTicker(rumps.App):
         """
         window = rumps.Window(title="Preferences", message=text, ok="Cancel", dimensions=(0,0))
         window.icon = MoneroTicker.ICON
-        # TODO: Format the buttons better. Is this even possible with rumps? Doesn't look like it
-        #       from the source code.
         window.add_buttons(MoneroTicker.SYMBOLS.keys())
         response = window.run().clicked
 
@@ -68,7 +61,7 @@ class MoneroTicker(rumps.App):
         entry = filter(lambda x: x["code"] == self.currency, loads(response))[0]["fiat-rate"]
         title = MoneroTicker.SYMBOLS[self.currency] + str(format(entry, "0.2f"))
 
-        # TODO: We manually pad the price the first time the ticker is loaded because of a
+        # We manually pad the price the first time the ticker is loaded because of a
         #       glitch in rumps. It looks a bit weird when it changes to the first non-padded
         #       version. Need some sort of fix so that it stops doing that.
         if not self.padded:
