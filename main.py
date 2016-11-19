@@ -25,10 +25,11 @@ class MoneroTicker(rumps.App):
 
     @rumps.clicked("About")
     def about(self, _):
+        # TODO What do people put on about pages?
         text = \
         """
         Feel free to donate to MoneroTicker!
-        43qwwxo5cmq8R1MhDD2iKWUPasmcYBRZD8oZVBU374taX6GFqZRCCuj4VxSgoR7UsPX4dZuzemTEHgCxbhsAKhosAE4Sq37
+        <address_redacted>
         """
         window = rumps.Window(title="Monero Ticker", message=text, ok=None, dimensions=(0,0))
         window.icon = MoneroTicker.ICON
