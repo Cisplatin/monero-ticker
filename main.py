@@ -62,7 +62,7 @@ class MoneroTicker(rumps.App):
         entry = filter(lambda x: x["code"] == self.currency, loads(response))[0]["fiat-rate"]
         title = MoneroTicker.SYMBOLS[self.currency] + str(format(entry, "0.2f"))
 
-        # We manually pad the price the first time the ticker is loaded because of a
+        # TODO: We manually pad the price the first time the ticker is loaded because of a
         #       glitch in rumps. It looks a bit weird when it changes to the first non-padded
         #       version. Need some sort of fix so that it stops doing that.
         if not self.padded:
